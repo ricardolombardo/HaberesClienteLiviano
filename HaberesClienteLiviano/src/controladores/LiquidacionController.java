@@ -1,0 +1,59 @@
+package controladores;
+
+import java.util.Hashtable;
+import java.util.List;
+
+import DTO.LiquidacionDTO;
+import DTO.TabuladoDTO;
+import modelosVistas.PanelLiquidacionesModelView;
+import modelosVistas.PanelTabuladosModelView;
+import paneles.PanelLiquidaciones;
+import servicios.ServicioLiquidaciones;
+import vistas.VistaEditorLiquidacion;
+import vistas.VistaPrincipal;
+
+public class LiquidacionController {
+	
+	public static void preVisualizarLiquidaciones(VistaPrincipal padre) {
+		
+		PanelLiquidacionesModelView modelo=new PanelLiquidacionesModelView();
+		Hashtable<String,LiquidacionDTO>liquidaciones=new Hashtable<String,LiquidacionDTO>();
+		
+		for(LiquidacionDTO liquidacion: ServicioLiquidaciones.getAll()) {
+			liquidaciones.put(String.valueOf(liquidacion.getId()), liquidacion);
+		};
+		
+		modelo.setLiquidaciones(liquidaciones);
+		modelo.setPadre(padre);
+		PanelLiquidaciones panel=new PanelLiquidaciones(modelo);
+		padre.actualizarPanelCentral(panel);
+		
+	}
+	
+	public static void posVerTabuladosLiquidacion(LiquidacionDTO liquidacion,VistaPrincipal padre) {
+		
+		List <TabuladoDTO> tabulados=liquidacion.getTabulados();
+		Hashtable<String, TabuladoDTO> hashTabulados= new Hashtable<String, TabuladoDTO>();
+		
+		PanelTabuladosModelView modelo=new PanelTabuladosModelView();
+		for(TabuladoDTO tabulado:tabulados) {
+			hashTabulados.put(String.valueOf(tabulado.getId()), tabulado);
+		}
+		
+		modelo.setTabulados(hashTabulados);
+		modelo.setPadre(padre);
+		TabuladosController.preTabuladosLiquidacion(modelo);
+		
+	}
+	
+	public static void preNuevaLiquidacion(VistaPrincipal padre,LiquidacionDTO liquidacion) {
+		VistaEditorLiquidacion vel=new VistaEditorLiquidacion(padre,liquidacion);
+		vel.setVisible(true);
+		
+	}
+	
+	public static void posNuevaLiquidacion(VistaPrincipal padre,LiquidacionDTO liquidacion) {
+		ServicioLiquidaciones.crearLiquidacion(liquidacion);
+		preVisualizarLiquidaciones(padre);
+	}
+}
