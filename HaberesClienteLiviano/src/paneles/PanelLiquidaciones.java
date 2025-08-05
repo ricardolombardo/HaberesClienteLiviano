@@ -34,7 +34,7 @@ public class PanelLiquidaciones extends PanelVista{
 		panelCentro.setLayout(new GridLayout(20,1,5,5));
 		panelCentro.setBackground(Color.white);
 		titulos=new JPanel();
-		titulos.setLayout(new GridLayout(1,7,0,0));
+		titulos.setLayout(new GridLayout(1,8,0,0));
 		
 		panelInferior=new JPanel();
 		panelInferior.setLayout(new GridLayout(1,8,1,1));
@@ -44,6 +44,7 @@ public class PanelLiquidaciones extends PanelVista{
 		this.setearTitulos("AÑO");
 		this.setearTitulos("MES");
 		this.setearTitulos("DESCRIPCION");
+		this.setearTitulos("LIQUIDADA");
 		this.setearTitulos("Editar");
 		this.setearTitulos("Ver");
 		this.setearTitulos("Liquidar");
@@ -68,6 +69,15 @@ public class PanelLiquidaciones extends PanelVista{
 			JLabel lDescripcion= new JLabel(liqudiacion.getDescripcion(),SwingConstants.CENTER);
 			lDescripcion.setFont(fuenteFila);
 			container.add(lDescripcion);
+			
+			JLabel lLiquidada;
+			if(liqudiacion.getLiquidada()) {
+				lLiquidada= new JLabel("Si ("+liqudiacion.getTabulados().size()+")",SwingConstants.CENTER);
+			}else {
+				lLiquidada= new JLabel("No",SwingConstants.CENTER);
+			}
+			lLiquidada.setFont(fuenteFila);
+			container.add(lLiquidada);
 
 			BotonSeleccion btnEditar =new BotonSeleccion("Editar");
 			btnEditar.setDto(liqudiacion);
@@ -110,6 +120,9 @@ public class PanelLiquidaciones extends PanelVista{
 				
 			});
 			container.add(botonLiquidar);
+			if(liqudiacion.getLiquidada()) {
+				botonLiquidar.setEnabled(Boolean.FALSE);
+			}
 			
 			container.setBackground(new Color(214, 234, 248));
 			container.addMouseListener(new MouseListener() {

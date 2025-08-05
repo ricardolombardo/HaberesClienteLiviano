@@ -11,6 +11,7 @@ public class LiquidacionDTO extends DTO{
 	private int anio;
 	private int mes;
 	private String descripcion;
+	private Boolean liquidada;
 	
 	public String getDescripcion() {
 		return descripcion;
@@ -35,6 +36,16 @@ public class LiquidacionDTO extends DTO{
 	}
 	public void setMes(int mes) {
 		this.mes = mes;
+	}
+	public Boolean getLiquidada() {
+		if(liquidada!=null) {
+			return liquidada;
+		}else {
+			return Boolean.FALSE;	
+		}
+	}
+	public void setLiquidada(Boolean liquidada) {
+		this.liquidada = liquidada;
 	}
 	
 }

@@ -66,6 +66,7 @@ public class VistaEditorLiquidacion extends JDialog{
 				liquidacion.setDescripcion(txtDesctipcion.getText());
 				liquidacion.setAnio(Integer.valueOf(txtAnio.getText()));
 				liquidacion.setMes(Integer.valueOf(txtMes.getText()));
+				liquidacion.setLiquidada(Boolean.FALSE);
 				LiquidacionController.posNuevaLiquidacion(padre, liquidacion);
 				mismo.dispose();
 			}

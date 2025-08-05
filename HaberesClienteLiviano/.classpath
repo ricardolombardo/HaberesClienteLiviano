@@ -7,8 +7,8 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/InterfacesGraficas"/>
-	<classpathentry kind="lib" path="C:/Mi_carpeta/Ingeniería Informática/Workspaces/Workspace F/HaberesClienteLiviano/librerias/jackson-annotations-2.17.1.jar"/>
-	<classpathentry kind="lib" path="C:/Mi_carpeta/Ingeniería Informática/Workspaces/Workspace F/HaberesClienteLiviano/librerias/jackson-core-2.17.1.jar"/>
-	<classpathentry kind="lib" path="C:/Mi_carpeta/Ingeniería Informática/Workspaces/Workspace F/HaberesClienteLiviano/librerias/jackson-databind-2.17.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ricar/git/repository/HaberesClienteLiviano/librerias/jackson-annotations-2.17.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ricar/git/repository/HaberesClienteLiviano/librerias/jackson-core-2.17.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ricar/git/repository/HaberesClienteLiviano/librerias/jackson-databind-2.17.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
