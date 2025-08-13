@@ -10,21 +10,12 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import DTO.DepartamentoDTO;
-import controladores.Principal;
 
 public class ServicioDepartamentos extends Servicio{
 		
 	public static List<DepartamentoDTO> getDepartametos() {
 		
-		String servicio;
-		
-		if(Principal.PUERTO.equals("8081")) {
-			servicio="/departamentos/getAll";
-		}else {
-			servicio="/HaberesMonolitico-0.0.1-SNAPSHOT/departamentos/getAll";
-		}
-		
-		String url = "http://localhost:"+Principal.PUERTO+servicio;
+		String url = "http://localhost:"+setearRutaServicio("departamentos/getAll");
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -67,17 +58,9 @@ public class ServicioDepartamentos extends Servicio{
 	        System.out.println("El ID de la persona no puede ser nulo para una actualización.");
 	        return;
 	    }
-	    
-	    String servicio;
-	    
-		if(Principal.PUERTO.equals("8081")) {
-			servicio="/departamentos/" + departamento.getId();
-		}else {
-			servicio="/HaberesMonolitico-0.0.1-SNAPSHOT/departamentos/"+ departamento.getId();
-		}
 
-	    String url = "http://localhost:"+Principal.PUERTO+servicio;
-
+	    String url = "http://localhost:"+setearRutaServicio("departamentos/"+ departamento.getId());
+	    
 	    ObjectMapper mapper = new ObjectMapper();
 
 	    // Crear JSON del cuerpo

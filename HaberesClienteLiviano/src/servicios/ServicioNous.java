@@ -8,15 +8,13 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import DTO.EventoNOUDTO;
 import DTO.NOUDTO;
-import controladores.Principal;
 
 public class ServicioNous extends Servicio{
 	
 	public static List<NOUDTO> getNous() {
-		String url = "http://localhost:"+Principal.PUERTO+setearRutaServicio("nous/getAll");
+		String url = "http://localhost:"+setearRutaServicio("nous/getAll");
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -41,7 +39,7 @@ public class ServicioNous extends Servicio{
 	
 	public static List<NOUDTO> getNousPersona(Long id) {
 
-		String url = "http://localhost:"+Principal.PUERTO+setearRutaServicio("nous/persona/"+id);
+		String url = "http://localhost:"+setearRutaServicio("nous/persona/"+id);
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -67,7 +65,7 @@ public class ServicioNous extends Servicio{
 	
 	public static List<EventoNOUDTO> getEventosNou(Long id) {
 
-		String url = "http://localhost:"+Principal.PUERTO+setearRutaServicio("nous/"+id+"/eventosNou");
+		String url = "http://localhost:"+setearRutaServicio("nous/"+id+"/eventosNou");
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

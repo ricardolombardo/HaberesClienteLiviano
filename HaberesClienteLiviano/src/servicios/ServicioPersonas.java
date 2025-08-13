@@ -11,18 +11,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import DTO.NOUDTO;
 import DTO.PersonaDTO;
-import controladores.Principal;
 
 public class ServicioPersonas extends Servicio{
 	
 	public static List<PersonaDTO> gePersonas() {
 
-	    String servicio = Principal.PUERTO.equals("8081")
-	        ? "/personas/getAll"
-	        : "/HaberesMonolitico-0.0.1-SNAPSHOT/personas/getAll";
-
-	    String url = "http://localhost:" + Principal.PUERTO + servicio;
-
+		String url = "http://localhost:"+setearRutaServicio("personas/getAll");
 	    HttpClient client = HttpClient.newHttpClient();
 	    HttpRequest request = HttpRequest.newBuilder()
 	            .uri(URI.create(url))
@@ -54,17 +48,8 @@ public static void updatePersona(PersonaDTO persona) {
         System.out.println("El ID de la persona no puede ser nulo para una actualización.");
         return;
     }
-    
-    String servicio;
-    
-	if(Principal.PUERTO.equals("8081")) {
-		servicio="/personas/" + persona.getId();
-	}else {
-		servicio="/HaberesMonolitico-0.0.1-SNAPSHOT/personas/"+ persona.getId();
-	}
 
-    String url = "http://localhost:"+Principal.PUERTO+servicio;
-
+    String url = "http://localhost:"+setearRutaServicio("personas/"+ persona.getId());
     ObjectMapper mapper = new ObjectMapper();
 
     // Crear JSON del cuerpo
@@ -100,17 +85,8 @@ public static void updatePersona(PersonaDTO persona) {
 	
 	public static void createPersona(PersonaDTO persona) {
 		
-		String servicio;
-		
-		if(Principal.PUERTO.equals("8081")) {
-			servicio="/personas";
-		}else {
-			servicio="/HaberesMonolitico-0.0.1-SNAPSHOT/personas";
-		}
-		
-		 String url = "http://localhost:8081"+Principal.PUERTO+servicio;
-
-		 // Crear el JSON del cuerpo con Jackson
+		String url = "http://localhost:"+setearRutaServicio("personas");
+		 
 	     ObjectMapper mapper = new ObjectMapper();
 
 	     ObjectNode personaJson = mapper.createObjectNode();
@@ -143,7 +119,7 @@ public static void updatePersona(PersonaDTO persona) {
 		}
 	
 	public static PersonaDTO getPersonaNou(NOUDTO nou) {
-		String url = "http://localhost:"+Principal.PUERTO+setearRutaServicio("personas/nou/"+nou.getNumeroNOU());
+		String url = "http://localhost:"+setearRutaServicio("personas/nou/"+nou.getNumeroNOU());
 		System.out.println("envio mensaje a "+url);
 		
         HttpClient client = HttpClient.newHttpClient();

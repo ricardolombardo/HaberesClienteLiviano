@@ -9,14 +9,12 @@ import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import DTO.JerarquiaDTO;
-import controladores.Principal;
-
 
 public class ServicioJerarquias extends Servicio{
 
 	public static List<JerarquiaDTO> getJerarquias() {
 		
-		String url = "http://localhost:"+Principal.PUERTO+setearRutaServicio("jerarquias/getAll");
+		String url = "http://localhost:"+setearRutaServicio("jerarquias/getAll");
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

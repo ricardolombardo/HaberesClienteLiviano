@@ -10,12 +10,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import DTO.LiquidacionDTO;
-import controladores.Principal;
 
 public class ServicioLiquidaciones extends Servicio{
 	
 	public static List<LiquidacionDTO> getAll(){
-		String url = "http://localhost:"+Principal.PUERTO+setearRutaServicio("liquidaciones/getAll");
+		String url = "http://localhost:"+setearRutaServicio("liquidaciones/getAll");
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -41,7 +40,7 @@ public class ServicioLiquidaciones extends Servicio{
 	}
 	
 	public static void crearLiquidacion(LiquidacionDTO liquidacion){
-		String url = "http://localhost:"+Principal.PUERTO+setearRutaServicio("liquidaciones");
+		String url = "http://localhost:"+setearRutaServicio("liquidaciones");
 
 		 // Crear el JSON del cuerpo con Jackson
 	     ObjectMapper mapper = new ObjectMapper();
@@ -71,7 +70,7 @@ public class ServicioLiquidaciones extends Servicio{
 	
 	public static void liquidar(LiquidacionDTO liquidacion){
 		System.out.println("Inicio Proceso Liquidacion "+liquidacion.getId());
-	    String url = "http://localhost:" + Principal.PUERTO + setearRutaServicio("liquidaciones/liquidar/" + liquidacion.getId());
+	    String url = "http://localhost:" +setearRutaServicio("liquidaciones/liquidar/" + liquidacion.getId());
 	    System.out.println(url);
 	    try {
 	        HttpClient client = HttpClient.newHttpClient();
