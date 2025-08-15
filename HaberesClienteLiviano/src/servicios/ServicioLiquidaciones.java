@@ -39,6 +39,32 @@ public class ServicioLiquidaciones extends Servicio{
         return liquidaciones;
 	}
 	
+	public static List<LiquidacionDTO> getLiquidacionesFiltradas(String anioDesde,String mesDesde,String anioHasta, String mesHasta){
+		String url = "http://localhost:"+setearRutaServicio("liquidaciones/rango/"+anioDesde+"/"+mesDesde+"/"+anioHasta+"/"+mesHasta);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+        List<LiquidacionDTO> liquidaciones = null;
+        
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            String json = response.body();
+            System.out.println("JSON recibido:");
+            System.out.println(json);
+            ObjectMapper mapper = new ObjectMapper();
+
+            liquidaciones = mapper.readValue(json, new TypeReference<List<LiquidacionDTO>>() {});
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        return liquidaciones;
+	}
+	
 	public static void crearLiquidacion(LiquidacionDTO liquidacion){
 		String url = "http://localhost:"+setearRutaServicio("liquidaciones");
 

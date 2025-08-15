@@ -5,6 +5,7 @@ import java.util.List;
 
 import DTO.LiquidacionDTO;
 import DTO.TabuladoDTO;
+import modelosVistas.FiltroModelView;
 import modelosVistas.PanelLiquidacionesModelView;
 import modelosVistas.PanelTabuladosModelView;
 import paneles.PanelLiquidaciones;
@@ -12,7 +13,7 @@ import servicios.ServicioLiquidaciones;
 import vistas.VistaEditorLiquidacion;
 import vistas.VistaPrincipal;
 
-public class LiquidacionController {
+public class LiquidacionController extends UseCaseController{
 	
 	public static void preVisualizarLiquidaciones(VistaPrincipal padre) {
 		
@@ -29,6 +30,25 @@ public class LiquidacionController {
 		padre.actualizarPanelCentral(panel);
 		
 	}
+	
+	@Override
+	public void ejecucionFiltro(FiltroModelView filtro) {
+		
+		PanelLiquidacionesModelView modelo=new PanelLiquidacionesModelView();
+		Hashtable<String,LiquidacionDTO>liquidaciones=new Hashtable<String,LiquidacionDTO>();
+		
+		for(LiquidacionDTO liquidacion: ServicioLiquidaciones.getLiquidacionesFiltradas(filtro.getAnioDesde(), filtro.getMesDesde(), filtro.getAnioHasta(), filtro.getMesHasta())) {
+			liquidaciones.put(String.valueOf(liquidacion.getId()), liquidacion);
+		};
+		
+		modelo.setLiquidaciones(liquidaciones);
+		modelo.setPadre(filtro.getPadre());
+		PanelLiquidaciones panel=new PanelLiquidaciones(modelo);
+		panel.setearFiltro(filtro);
+		filtro.getPadre().actualizarPanelCentral(panel);
+		
+	}
+	
 	
 	public static void posVerTabuladosLiquidacion(LiquidacionDTO liquidacion,VistaPrincipal padre) {
 		
@@ -56,4 +76,5 @@ public class LiquidacionController {
 		ServicioLiquidaciones.crearLiquidacion(liquidacion);
 		preVisualizarLiquidaciones(padre);
 	}
+
 }
