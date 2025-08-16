@@ -15,8 +15,8 @@ public class JerarquiaController {
 		PanelJerarquiasModelView modelo=new PanelJerarquiasModelView();
 		Hashtable<String,JerarquiaDTO>jerarquias=new Hashtable<String,JerarquiaDTO>();
 		
-		for(JerarquiaDTO persona: ServicioJerarquias.getJerarquias()) {
-			jerarquias.put(String.valueOf(persona.getId()), persona);
+		for(JerarquiaDTO jerarquia: ServicioJerarquias.getJerarquias()) {
+			jerarquias.put(String.valueOf(jerarquia.getId()), jerarquia);
 		};
 		
 		modelo.setJerarquias(jerarquias);

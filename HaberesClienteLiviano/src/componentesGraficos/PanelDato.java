@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 
@@ -31,6 +32,16 @@ public class PanelDato extends JPanel{
 		lDato1.setFont(fuenteFila);
 		this.add(lNombre);
 		this.add(lDato1);
+	}
+	
+	public PanelDato(String nombre, JTextField dato) {
+		lNombre= new JLabel(nombre,SwingConstants.CENTER);
+		lNombre.setBackground(Color.white);
+		this.setLayout(new GridLayout(1,2,5,5));
+		Font fuenteFila=new Font("Arial", java.awt.Font.PLAIN, 22);
+		lNombre.setFont(fuenteFila);
+		this.add(lNombre);
+		this.add(dato);
 	}
 	
 	public PanelDato(String nombre, String dato, JButton btn) {

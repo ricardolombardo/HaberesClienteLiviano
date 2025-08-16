@@ -8,26 +8,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import DTO.DepartamentoDTO;
+
+import DTO.EventoDTO;
+import DTO.JerarquiaDTO;
 import componentesGraficos.BotonSeleccion;
-import controladores.DepartamentoController;
-import modelosVistas.PanelDepartamentosModelView;
+import controladores.EventoController;
+import modelosVistas.PanelEventosModelView;
 
-public class PanelDepartamentos extends PanelVista{
-
-	private static final long serialVersionUID = 1L;
-	private PanelDepartamentosModelView modeloVista;
+public class PanelEventos extends PanelVista{
 	
-	public PanelDepartamentos(PanelDepartamentosModelView modelo) {
+	private PanelEventosModelView modeloVista;
+	
+	public PanelEventos(PanelEventosModelView modelo) {
 		this.setBackground(Color.white);
 		this.setLayout(new BorderLayout());
 		this.modeloVista=modelo;
 		
-		setTituloPrincipal("DEPARTAMENTOS");
+		setTituloPrincipal("EVENTOS");
 		panelCentro=new JPanel();
 		panelCentro.setLayout(new GridLayout(20,1,5,5));
 		panelCentro.setBackground(Color.white);
@@ -46,35 +48,36 @@ public class PanelDepartamentos extends PanelVista{
 		titulos.setBackground(new Color(169, 223, 191));
 		this.add(panelCentro,BorderLayout.CENTER);
 		
-		for(String cv:modelo.getDepartamentos().keySet()) {
-			DepartamentoDTO departamento=modelo.getDepartamentos().get(cv);
+		for(String cv:modelo.getEventos().keySet()) {
+			EventoDTO evento=modelo.getEventos().get(cv);
 			JPanel container=new JPanel();
 			container.setLayout(new GridLayout(1,5,20,0));
 			Font fuenteFila=new Font("Arial", java.awt.Font.PLAIN, 22);
 			
-			JLabel lNombre= new JLabel(departamento.getNombre(),SwingConstants.CENTER);
+			JLabel lNombre= new JLabel(evento.getDescripcion(),SwingConstants.CENTER);
 			lNombre.setFont(fuenteFila);
 			container.add(lNombre);
 			
 
 			BotonSeleccion btnEditar =new BotonSeleccion("Editar");
-			btnEditar.setDto(departamento);
+			btnEditar.setDto(evento);
 			btnEditar.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DepartamentoController.preNuevoDepartamento(modelo.getPadre(), departamento);
+					
 				}
+				
 			});
 			container.add(btnEditar);
 			
 			BotonSeleccion boton =new BotonSeleccion("Ver");
-			boton.setDto(departamento);
+			boton.setDto(evento);
 			boton.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DepartamentoDTO departamentoSeleccionado =(DepartamentoDTO)boton.getDto();
+					
 				}
 				
 			});
@@ -123,14 +126,11 @@ public class PanelDepartamentos extends PanelVista{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//VehiculoController.preVistaNuevoVehiculo(null,modeloVista.getPadre());
-				
+				EventoController.preNuevoEvento(modelo.getPadre());
 			}
 			
 		});
 		panelInferior.add(btnNuevo);
-		
-		
 	}
 
 }

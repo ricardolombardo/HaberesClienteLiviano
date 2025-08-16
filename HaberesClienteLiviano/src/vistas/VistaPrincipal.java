@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import componentesVisuales.BotonPrincipal;
 import controladores.DepartamentoController;
+import controladores.EventoController;
 import controladores.JerarquiaController;
 import controladores.LiquidacionController;
 import controladores.PersonaController;
@@ -62,53 +63,25 @@ public class VistaPrincipal extends Vista{
 			public void actionPerformed(ActionEvent e) {
 				Container contBtn=new Container();
 				contBtn.setLayout(null);
-				
-				JButton btnMarcas=new JButton("Marcas");
+
+				JButton btnMarcas=new JButton("Conceptos");
 				btnMarcas.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
 					}
 				});
-				btnMarcas.setBounds(0, 5, 140,30);
-				contBtn.add(btnMarcas);
+				agregarBotonInterno( contBtn, btnMarcas, nombreRecurso);
 				
-				JButton btnModelos=new JButton("Modelos");
-				btnModelos.addActionListener(new ActionListener() {
+				JButton btnEventos=new JButton("Eventos");
+				btnEventos.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-
+						EventoController.preVisualizarEventos(mismo);
 					}
 				});
-				btnModelos.setBounds(0,contBtn.getComponentCount()*40, 140,30);
-				contBtn.add(btnModelos);
-
-				contBtn.setMaximumSize(new Dimension(300,contBtn.getComponentCount()*40));
-				getPanelBotones().actualizarDesplegado(contBtn,nombreRecurso);
-				
-				JButton btnTipos=new JButton("Tipos");
-				btnTipos.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-
-					}
-				});
-				btnTipos.setBounds(0,contBtn.getComponentCount()*40, 140,30);
-				contBtn.add(btnTipos);
-
-				contBtn.setMaximumSize(new Dimension(300,contBtn.getComponentCount()*40));
-				getPanelBotones().actualizarDesplegado(contBtn,nombreRecurso);
-				
+				agregarBotonInterno( contBtn, btnEventos, nombreRecurso);
 				
 				JButton btnFiltros=new JButton("Filtros");
-				btnFiltros.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-
-					}
-				});
-				btnFiltros.setBounds(0,contBtn.getComponentCount()*40, 140,30);
-				contBtn.add(btnFiltros);
-
-				contBtn.setMaximumSize(new Dimension(300,contBtn.getComponentCount()*40));
-				getPanelBotones().actualizarDesplegado(contBtn,nombreRecurso);
-				
+				agregarBotonInterno( contBtn, btnFiltros, nombreRecurso);
 				
 			}
 
