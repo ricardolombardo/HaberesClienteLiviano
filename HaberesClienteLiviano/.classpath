@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="C:/Users/ricar/git/repository/HaberesClienteLiviano/librerias/jackson-annotations-2.17.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ricar/git/repository/HaberesClienteLiviano/librerias/jackson-core-2.17.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ricar/git/repository/HaberesClienteLiviano/librerias/jackson-databind-2.17.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ricar/git/repository/HaberesClienteLiviano/librerias/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

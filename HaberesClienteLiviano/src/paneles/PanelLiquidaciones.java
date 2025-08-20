@@ -128,7 +128,7 @@ public class PanelLiquidaciones extends PanelVista{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					LiquidacionDTO liquidacionSeleccionada=(LiquidacionDTO) botonLiquidar.getDto();
-					ServicioLiquidaciones.liquidar(liquidacionSeleccionada);
+					LiquidacionController.preLiquidar(liquidacionSeleccionada,panelFiltro.armarFiltro());
 				}
 				
 			});

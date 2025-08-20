@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.toedter.calendar.JDateChooser;
+
 
 public class PanelDato extends JPanel{
 	
@@ -35,6 +37,26 @@ public class PanelDato extends JPanel{
 	}
 	
 	public PanelDato(String nombre, JTextField dato) {
+		lNombre= new JLabel(nombre,SwingConstants.CENTER);
+		lNombre.setBackground(Color.white);
+		this.setLayout(new GridLayout(1,2,5,5));
+		Font fuenteFila=new Font("Arial", java.awt.Font.PLAIN, 22);
+		lNombre.setFont(fuenteFila);
+		this.add(lNombre);
+		this.add(dato);
+	}
+	
+	public PanelDato(String nombre, JDateChooser dato) {
+		lNombre= new JLabel(nombre,SwingConstants.CENTER);
+		lNombre.setBackground(Color.white);
+		this.setLayout(new GridLayout(1,2,5,5));
+		Font fuenteFila=new Font("Arial", java.awt.Font.PLAIN, 22);
+		lNombre.setFont(fuenteFila);
+		this.add(lNombre);
+		this.add(dato);
+	}
+	
+	public PanelDato(String nombre, ComboDTO dato) {
 		lNombre= new JLabel(nombre,SwingConstants.CENTER);
 		lNombre.setBackground(Color.white);
 		this.setLayout(new GridLayout(1,2,5,5));

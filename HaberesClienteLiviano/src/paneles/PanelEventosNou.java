@@ -3,11 +3,16 @@ package paneles;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import DTO.EventoNOUDTO;
+import DTO.NOUDTO;
 import componentesGraficos.PanelDato;
+import controladores.EventoController;
 import modelosVistas.PanelEventosNouModelView;
 
 public class PanelEventosNou extends PanelVista{
@@ -15,7 +20,7 @@ public class PanelEventosNou extends PanelVista{
 	private static final long serialVersionUID = 1L;
 	private PanelEventosNouModelView modeloVista;
 	
-	public PanelEventosNou(PanelEventosNouModelView modelo) {
+	public PanelEventosNou(PanelEventosNouModelView modelo,NOUDTO nou) {
 		this.setBackground(Color.white);
 		this.setLayout(new BorderLayout());
 		this.modeloVista=modelo;
@@ -46,11 +51,25 @@ public class PanelEventosNou extends PanelVista{
 		titulos.setBackground(new Color(169, 223, 191));
 		panelDatos.add(titulos);
 		
-		for(EventoNOUDTO eventoNou:modelo.getEventosNOU()) {
-			PanelDato datoDpto=new PanelDato(eventoNou.getEvento().getIdentificador(),eventoNou.getFechaInicio(), eventoNou.getFechaFin(), null);
-			panelDatos.add(datoDpto);
+		if(modelo.getEventosNOU()!=null) {
+			for(EventoNOUDTO eventoNou:modelo.getEventosNOU()) {
+				PanelDato datoDpto=new PanelDato(eventoNou.getEvento().getIdentificador(),eventoNou.getFechaInicio(), eventoNou.getFechaFin(), null);
+				panelDatos.add(datoDpto);
+			}	
 		}
+		
 		panelCentro.add(panelDatos,BorderLayout.CENTER);
+		
+		JButton btnNuevo=new JButton("Nuevo");
+		btnNuevo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EventoController.preNuevoEventoNOU(modelo.getPadre(),nou);
+			}
+			
+		});
+		panelInferior.add(btnNuevo);
 	}
 
 }

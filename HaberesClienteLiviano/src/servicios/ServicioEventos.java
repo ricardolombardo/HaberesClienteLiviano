@@ -8,11 +8,13 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import DTO.DepartamentoDTO;
 import DTO.EventoDTO;
+import DTO.EventoNOUDTO;
 import DTO.LiquidacionDTO;
 
 public class ServicioEventos extends Servicio{
@@ -78,4 +80,47 @@ public static List<EventoDTO> getEventos() {
 	           e.printStackTrace();
 	        }
 	}
+	
+	public static void crearEventoNOU(EventoNOUDTO eventoNOU, Long NouId) {
+	    String url = "http://localhost:" + setearRutaServicio("eventosNOUs");
+	    ObjectMapper mapper = new ObjectMapper();
+
+	    ObjectNode json = mapper.createObjectNode();
+
+	    json.put("fechaInicio", eventoNOU.getFechaInicio().toString());
+	    json.put("fechaFin", eventoNOU.getFechaFin().toString());
+
+	    // Subobjeto evento con solo el id
+	    ObjectNode eventoNode = mapper.createObjectNode();
+	    eventoNode.put("id", eventoNOU.getEvento().getId());
+	    json.set("evento", eventoNode);
+
+	    // Subobjeto nou con solo el id
+	    ObjectNode nouNode = mapper.createObjectNode();
+	    nouNode.put("id", NouId);
+	    json.set("nou", nouNode);
+
+	    try {
+	        // Convertir a string para enviar
+	        String requestBody = mapper.writerWithDefaultPrettyPrinter()
+	                                   .writeValueAsString(json);
+
+	        // Mostrar el JSON generado
+	        System.out.println("JSON enviado:\n" + requestBody);
+
+	        HttpClient client = HttpClient.newHttpClient();
+	        HttpRequest request = HttpRequest.newBuilder()
+	                .uri(URI.create(url))
+	                .header("Content-Type", "application/json")
+	                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+	                .build();
+
+	        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+	        System.out.println(response.body());
+
+	    } catch (IOException | InterruptedException e) {
+	        e.printStackTrace();
+	    }
+	}
+
 }

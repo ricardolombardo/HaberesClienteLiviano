@@ -2,25 +2,20 @@ package paneles;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
 import DTO.NOUDTO;
-import DTO.PersonaDTO;
 import componentesGraficos.BotonSeleccion;
 import componentesGraficos.PanelDato;
 import controladores.NOUController;
 import modelosVistas.PanelDatosPersonaModelView;
-import servicios.ServicioNous;
 
 public class PanelDatosPersona extends PanelVista{
 	
+	private static final long serialVersionUID = 1L;
 	private PanelDatosPersonaModelView modeloVista;
 	
 	public PanelDatosPersona(PanelDatosPersonaModelView modelo) {
@@ -66,8 +61,7 @@ public class PanelDatosPersona extends PanelVista{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					NOUDTO nouSeleccionado=(NOUDTO) btnNou.getDto();
-					//ServicioNous.getEventosNou(nouSeleccionado.getId());
-					NOUController.preRecuperarEventosNou(nouSeleccionado.getId(), modelo.getPadre(),modelo.getPersona());
+					NOUController.preRecuperarEventosNou(nouSeleccionado, modelo.getPadre(),modelo.getPersona());
 				}
 				
 			});
@@ -75,6 +69,17 @@ public class PanelDatosPersona extends PanelVista{
 			panelDatos.add(datoNou);
 		}
 		panelCentro.add(panelDatos,BorderLayout.CENTER);
+		
+		JButton btnNuevo=new JButton("Nuevo");
+		btnNuevo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				NOUController.preCrearNou(modeloVista.getPadre(), modeloVista.getPersona());
+			}
+			
+		});
+		panelInferior.add(btnNuevo);
 		
 	}
 

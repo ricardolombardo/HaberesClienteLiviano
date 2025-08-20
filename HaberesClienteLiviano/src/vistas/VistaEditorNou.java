@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,20 +12,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import DTO.EventoDTO;
-import componentesGraficos.ComboDTO;
+
+import DTO.NOUDTO;
+import DTO.PersonaDTO;
 import componentesGraficos.PanelDato;
 import controladores.EventoController;
+import controladores.NOUController;
+import excepciones.NOUException;
+import servicios.ServicioNous;
 
-public class VistaEditorEvento extends JDialog{
+public class VistaEditorNou extends JDialog{
 	
-	private VistaEditorEvento mismo;
+	private JTextField txtNumero;
 	private VistaPrincipal padre;
-	private JTextField txtIdentificador;
-	private JTextField txtDescripcion;
-	private ComboDTO comboEventos;
-	
-	public VistaEditorEvento(VistaPrincipal padre,EventoDTO evento) {
+	private VistaEditorNou mismo;
+
+	public VistaEditorNou(VistaPrincipal padre,PersonaDTO persona) {
 		super(new JFrame(),"Editor Evento",true);
 		this.setLocationRelativeTo(null);
 		this.setSize(400,150);
@@ -39,20 +40,17 @@ public class VistaEditorEvento extends JDialog{
 		panelCentro.setLayout(new GridLayout(3,1,2,2));
 		panelCentro.setBackground(Color.white);
 		
-		txtIdentificador=new JTextField();
-		PanelDato datoIdentificador=new PanelDato("Identificador",txtIdentificador);
+		txtNumero=new JTextField();
+		PanelDato datoIdentificador=new PanelDato("Numero",txtNumero);
 		panelCentro.add(datoIdentificador);
-
-		txtDescripcion=new JTextField();
-		PanelDato datoDescripcion=new PanelDato("Descripcion",txtDescripcion);
-		panelCentro.add(datoDescripcion);
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				evento.setIdentificador(txtIdentificador.getText());
-				evento.setDescripcion(txtDescripcion.getText());
-				EventoController.posNuevoEvento(padre, evento);
+				NOUDTO nou=new NOUDTO();
+				nou.setNumeroNOU(Integer.parseInt(txtNumero.getText()));
+				nou.setPersona(persona);
+				NOUController.posCrearNou(padre, nou);
 				mismo.dispose();
 			}
 		});
@@ -63,5 +61,5 @@ public class VistaEditorEvento extends JDialog{
 		
 		this.add(panelCentro,BorderLayout.CENTER);
 	}
-
+	
 }

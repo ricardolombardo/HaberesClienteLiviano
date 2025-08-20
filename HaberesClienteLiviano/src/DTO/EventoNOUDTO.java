@@ -32,5 +32,4 @@ public class EventoNOUDTO extends DTO{
 		this.fechaFin = fechaFin;
 	}	
 	
-	
 }

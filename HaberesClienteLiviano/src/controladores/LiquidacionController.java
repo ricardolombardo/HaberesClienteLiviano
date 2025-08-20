@@ -76,5 +76,11 @@ public class LiquidacionController extends UseCaseController{
 		ServicioLiquidaciones.crearLiquidacion(liquidacion);
 		preVisualizarLiquidaciones(padre);
 	}
+	
+	public static void preLiquidar(LiquidacionDTO liquidacionSeleccionada,FiltroModelView filtro) {
+		ServicioLiquidaciones.liquidar(liquidacionSeleccionada);
+		LiquidacionController controlador=new LiquidacionController();
+		controlador.ejecucionFiltro(filtro);
+	}
 
 }

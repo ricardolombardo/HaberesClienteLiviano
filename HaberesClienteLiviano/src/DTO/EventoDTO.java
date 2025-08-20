@@ -21,6 +21,8 @@ public class EventoDTO extends DTO{
 		this.identificador = identificador;
 	}
 	
-	
+	public String toString() {
+		return this.descripcion;
+	}
 
 }

@@ -20,6 +20,7 @@ public class PanelFiltro extends JPanel{
 	private JComboBox <String> comboMesDesde;
 	private JComboBox <String> comboAnioHasta;
 	private JComboBox <String> comboMesHasta;
+	private VistaPrincipal padre;
 	
 	public PanelFiltro(UseCaseController controlador,VistaPrincipal padre) {
 		
@@ -30,6 +31,7 @@ public class PanelFiltro extends JPanel{
 		String mesesDesde[]= {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
 		String aniosHasta[]= {"2020","2021","2022","2023"};
 		String mesesHasta[]= {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+		this.padre=padre;
 		
 		comboAnioDesde=new JComboBox <String>(aniosDesde);
 		comboAnioDesde.setBackground(Color.white);
@@ -80,6 +82,22 @@ public class PanelFiltro extends JPanel{
 		});
 		this.add(botonFiltrar);
 		
+	}
+	
+	public FiltroModelView armarFiltro() {
+		FiltroModelView filtro=new FiltroModelView();
+		filtro.setPadre(padre);
+		
+		filtro.setIndiceAnioDesde(comboAnioDesde.getSelectedIndex());
+		filtro.setIndiceMesDesde(comboMesDesde.getSelectedIndex());
+		filtro.setIndiceAnioHasta(comboAnioHasta.getSelectedIndex());
+		filtro.setIndiceMesHasta(comboMesHasta.getSelectedIndex());
+		
+		filtro.setAnioDesde(comboAnioDesde.getSelectedItem().toString());
+		filtro.setMesDesde(String.valueOf(comboMesDesde.getSelectedIndex()+1));
+		filtro.setAnioHasta(comboAnioHasta.getSelectedItem().toString());
+		filtro.setMesHasta(String.valueOf(comboMesHasta.getSelectedIndex()+1));
+		return filtro;
 	}
 
 	public JComboBox<String> getComboAnioDesde() {

@@ -74,7 +74,6 @@ public class PanelPersonas extends PanelVista{
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					//VehiculoController.preVistaNuevoVehiculo((DepartamentoDTO)btnEditar.getDto(),modeloVista.getPadre());
 					PersonaController.preEditarPersona((PersonaDTO)btnEditar.getDto(), modeloVista.getPadre());
 				}
 				
@@ -137,8 +136,7 @@ public class PanelPersonas extends PanelVista{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//VehiculoController.preVistaNuevoVehiculo(null,modeloVista.getPadre());
-				
+				PersonaController.preEditarPersona(new PersonaDTO(), modeloVista.getPadre());
 			}
 			
 		});
