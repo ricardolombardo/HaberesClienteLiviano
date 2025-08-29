@@ -5,12 +5,16 @@ import java.util.List;
 
 import DTO.LiquidacionDTO;
 import DTO.TabuladoDTO;
+import DTO.TareaDTO;
+import DTO.TareaLiquidacionDTO;
 import modelosVistas.FiltroModelView;
 import modelosVistas.PanelLiquidacionesModelView;
 import modelosVistas.PanelTabuladosModelView;
 import paneles.PanelLiquidaciones;
 import servicios.ServicioLiquidaciones;
+import servicios.ServicioTareas;
 import vistas.VistaEditorLiquidacion;
+import vistas.VistaEditorTareasLiquidacion;
 import vistas.VistaPrincipal;
 
 public class LiquidacionController extends UseCaseController{
@@ -79,6 +83,21 @@ public class LiquidacionController extends UseCaseController{
 	
 	public static void preLiquidar(LiquidacionDTO liquidacionSeleccionada,FiltroModelView filtro) {
 		ServicioLiquidaciones.liquidar(liquidacionSeleccionada);
+		LiquidacionController controlador=new LiquidacionController();
+		controlador.ejecucionFiltro(filtro);
+	}
+	
+	public static void preEditarLiquidacion(LiquidacionDTO liquidacionSeleccionada,FiltroModelView filtro) {
+		List<TareaDTO> tareas=ServicioTareas.getTareas();
+		List<TareaLiquidacionDTO>tareasLiquidacion=ServicioTareas.getTareaLiquidacion(liquidacionSeleccionada.getId());
+		liquidacionSeleccionada.setTareas(tareasLiquidacion);
+		VistaEditorTareasLiquidacion vet=new VistaEditorTareasLiquidacion(liquidacionSeleccionada,tareas,filtro);
+		vet.setVisible(true);
+		
+	}
+	
+	public static void preCrearTareasLiquidacion(List<TareaLiquidacionDTO> tareas,FiltroModelView filtro) {
+		ServicioTareas.crearTareaLiquidacion(tareas);
 		LiquidacionController controlador=new LiquidacionController();
 		controlador.ejecucionFiltro(filtro);
 	}

@@ -1,7 +1,6 @@
 package vistas;
 
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -11,19 +10,15 @@ import controladores.EventoController;
 import controladores.JerarquiaController;
 import controladores.LiquidacionController;
 import controladores.PersonaController;
-import servicios.ServicioJerarquias;
-import servicios.ServicioLiquidaciones;
+import controladores.Principal;
 
 public class VistaPrincipal extends Vista{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private VistaPrincipal mismo;
 	
 	public VistaPrincipal() {
-		super("Liquidacion de Haberes");
+		super("Liquidacion de Haberes "+Principal.modo);
 		mismo=this;
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		

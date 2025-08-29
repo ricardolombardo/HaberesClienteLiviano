@@ -12,6 +12,7 @@ public class LiquidacionDTO extends DTO{
 	private int mes;
 	private String descripcion;
 	private Boolean liquidada;
+	private List<TareaLiquidacionDTO> tareas;
 	
 	public String getDescripcion() {
 		return descripcion;
@@ -47,5 +48,13 @@ public class LiquidacionDTO extends DTO{
 	public void setLiquidada(Boolean liquidada) {
 		this.liquidada = liquidada;
 	}
+	public List<TareaLiquidacionDTO> getTareas() {
+		return tareas;
+	}
+	public void setTareas(List<TareaLiquidacionDTO> tareas) {
+		this.tareas = tareas;
+	}
+	
+	
 	
 }

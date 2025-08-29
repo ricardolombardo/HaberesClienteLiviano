@@ -98,7 +98,7 @@ public class PanelLiquidaciones extends PanelVista{
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
+					LiquidacionController.preEditarLiquidacion(liqudiacion, panelFiltro.armarFiltro());
 				}
 				
 			});

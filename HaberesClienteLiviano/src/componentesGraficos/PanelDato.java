@@ -17,9 +17,6 @@ import com.toedter.calendar.JDateChooser;
 
 public class PanelDato extends JPanel{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel lNombre;
 	private JLabel lDato1;
@@ -109,6 +106,48 @@ public class PanelDato extends JPanel{
 		});
 	}
 	
+	public PanelDato(String nombre, ComboDTO combo,JTextField txt, JButton btn) {
+		lNombre= new JLabel(nombre,SwingConstants.CENTER);
+		this.setLayout(new GridLayout(1,4,5,5));
+		Font fuenteFila=new Font("Arial", java.awt.Font.PLAIN, 22);
+		lNombre.setFont(fuenteFila);
+		
+		this.add(lNombre);
+		this.add(combo);
+		this.add(txt);
+		if(btn!=null) {
+			this.add(btn);	
+		}else {
+			this.add(new JPanel());	
+		}
+		
+		this.setBackground(new Color(214, 234, 248));
+		this.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setBackground(new Color(253, 235, 208));	
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setBackground(new Color(214, 234, 248));
+			}
+		});
+	}
+	
 	public PanelDato(String nombre, String dato1,String dato2, JButton btn) {
 		lNombre= new JLabel(nombre,SwingConstants.CENTER);
 		lDato1=new JLabel(dato1);
@@ -156,6 +195,8 @@ public class PanelDato extends JPanel{
 			}
 		});
 	}
+	
+	
 	
 
 	public JLabel getlNombre() {
