@@ -180,7 +180,7 @@ public class PanelLiquidaciones extends PanelVista{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				LiquidacionController.preNuevaLiquidacion(modelo.getPadre(),new LiquidacionDTO());
+				LiquidacionController.preNuevaLiquidacion(modelo.getPadre(),new LiquidacionDTO(),panelFiltro.armarFiltro());
 				
 			}
 			

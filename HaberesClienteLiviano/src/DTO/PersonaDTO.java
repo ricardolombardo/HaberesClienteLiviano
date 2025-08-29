@@ -12,6 +12,7 @@ public class PersonaDTO extends DTO{
 	private String apellidoMaterno;
 	private DepartamentoDTO departamento;
 	private JerarquiaDTO jerarquia;
+	private TituloDTO titulo;
 	private List<NOUDTO> nous;
 
 	public String getNombre() {
@@ -61,7 +62,13 @@ public class PersonaDTO extends DTO{
 	public void setNous(List<NOUDTO> nous) {
 		this.nous = nous;
 	}
-	
-	
+
+	public TituloDTO getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(TituloDTO titulo) {
+		this.titulo = titulo;
+	}
 	
 }

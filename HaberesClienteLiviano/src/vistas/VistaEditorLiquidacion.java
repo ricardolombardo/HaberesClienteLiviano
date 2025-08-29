@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import DTO.LiquidacionDTO;
 import controladores.LiquidacionController;
+import modelosVistas.FiltroModelView;
 import servicios.ServicioLiquidaciones;
 
 public class VistaEditorLiquidacion extends JDialog{
@@ -24,7 +25,7 @@ public class VistaEditorLiquidacion extends JDialog{
 	private JTextField txtAnio;
 	private JTextField txtMes;
 	
-	public VistaEditorLiquidacion(VistaPrincipal padre,LiquidacionDTO liquidacion) {
+	public VistaEditorLiquidacion(VistaPrincipal padre,LiquidacionDTO liquidacion,FiltroModelView filtro) {
 
 		
 		super(new JFrame(),"Editor Departamento",true);
@@ -67,7 +68,7 @@ public class VistaEditorLiquidacion extends JDialog{
 				liquidacion.setAnio(Integer.valueOf(txtAnio.getText()));
 				liquidacion.setMes(Integer.valueOf(txtMes.getText()));
 				liquidacion.setLiquidada(Boolean.FALSE);
-				LiquidacionController.posNuevaLiquidacion(padre, liquidacion);
+				LiquidacionController.posNuevaLiquidacion(padre, liquidacion, filtro);
 				mismo.dispose();
 			}
 		});

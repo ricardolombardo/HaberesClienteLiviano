@@ -23,13 +23,14 @@ public class VistaEditorPersona extends JDialog{
 	private static final long serialVersionUID = 1L;
 	private ComboDTO cmbDepartamentos;
 	private ComboDTO cmbJerarquias;
+	private ComboDTO cmbTitulos;
 	private JTextField txtNombre;
 	private JTextField txtApellidoPaterno;
 	private JTextField txtApellidoMaterno;
 	private VistaEditorPersona mismo;
 	private VistaPrincipal padre;
 	
-	public VistaEditorPersona(VistaPrincipal padre,PersonaDTO persona,List<DepartamentoDTO>departamentos,List<JerarquiaDTO> jerarquias) {
+	public VistaEditorPersona(VistaPrincipal padre,PersonaDTO persona,List<DepartamentoDTO>departamentos,List<JerarquiaDTO> jerarquias,List<TituloDTO> titulos) {
 		super(new JFrame(),"Editor Persona",true);
 		this.setLocationRelativeTo(null);
 		this.setSize(400,200);
@@ -39,7 +40,7 @@ public class VistaEditorPersona extends JDialog{
 		mismo=this;
 		this.padre=padre;
 		JPanel panelCentro=new JPanel();
-		panelCentro.setLayout(new GridLayout(6,1,2,2));
+		panelCentro.setLayout(new GridLayout(7,1,2,2));
 		panelCentro.setBackground(Color.white);
 		
 		JPanel cont1=new JPanel();
@@ -82,6 +83,15 @@ public class VistaEditorPersona extends JDialog{
 		}
 		cont5.add(cmbJerarquias);
 		
+		JPanel cont6=new JPanel();
+		cont6.setLayout(new GridLayout(1,2,0,0));
+		cont6.add(new JLabel("Titulo"));
+		cmbTitulos=new ComboDTO();
+		for(TituloDTO titulo:titulos) {
+			cmbTitulos.addItem(titulo);
+		}
+		cont6.add(cmbTitulos);
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -96,6 +106,9 @@ public class VistaEditorPersona extends JDialog{
 				JerarquiaDTO jerarquia=(JerarquiaDTO)cmbJerarquias.getSelectedItem();
 				persona.setJerarquia(jerarquia);
 				
+				TituloDTO titulo=(TituloDTO)cmbTitulos.getSelectedItem();
+				persona.setTitulo(titulo);
+				
 				PersonaController.posEditarPersona(persona, padre);
 				mismo.dispose();
 			}
@@ -106,6 +119,7 @@ public class VistaEditorPersona extends JDialog{
 		panelCentro.add(cont3);
 		panelCentro.add(cont4);
 		panelCentro.add(cont5);
+		panelCentro.add(cont6);
 		panelCentro.add(btnAceptar);
 		panelCentro.setBorder(new EmptyBorder(10, 10, 10, 10));
 		validate();

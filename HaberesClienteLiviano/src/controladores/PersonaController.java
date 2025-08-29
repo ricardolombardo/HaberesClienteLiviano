@@ -7,6 +7,7 @@ import DTO.DepartamentoDTO;
 import DTO.JerarquiaDTO;
 import DTO.NOUDTO;
 import DTO.PersonaDTO;
+import DTO.TituloDTO;
 import modelosVistas.PanelDatosPersonaModelView;
 import modelosVistas.PanelPersonasModelView;
 import paneles.PanelDatosPersona;
@@ -15,6 +16,7 @@ import servicios.ServicioDepartamentos;
 import servicios.ServicioJerarquias;
 import servicios.ServicioNous;
 import servicios.ServicioPersonas;
+import servicios.ServicioTitulos;
 import vistas.VistaEditorPersona;
 import vistas.VistaPrincipal;
 
@@ -39,8 +41,9 @@ public class PersonaController {
 	public static void preEditarPersona(PersonaDTO persona,VistaPrincipal padre) {
 		List<DepartamentoDTO> departamentos=ServicioDepartamentos.getDepartametos();
 		List<JerarquiaDTO> jerarquias=ServicioJerarquias.getJerarquias();
+		List<TituloDTO> titulos=ServicioTitulos.getTitulos();
 		
-		VistaEditorPersona vep=new VistaEditorPersona(padre,persona,departamentos,jerarquias);
+		VistaEditorPersona vep=new VistaEditorPersona(padre,persona,departamentos,jerarquias,titulos);
 		vep.setVisible(true);
 	}
 	

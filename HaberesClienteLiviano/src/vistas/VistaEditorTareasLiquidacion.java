@@ -84,7 +84,6 @@ public class VistaEditorTareasLiquidacion extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//ServicioTareas.crearTareaLiquidacion(liquidacion.getTareas());
 				LiquidacionController.preCrearTareasLiquidacion(liquidacion.getTareas(), filtro);
 				mismo.dispose();
 			}

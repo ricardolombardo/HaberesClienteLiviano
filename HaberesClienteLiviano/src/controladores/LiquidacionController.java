@@ -70,15 +70,17 @@ public class LiquidacionController extends UseCaseController{
 		
 	}
 	
-	public static void preNuevaLiquidacion(VistaPrincipal padre,LiquidacionDTO liquidacion) {
-		VistaEditorLiquidacion vel=new VistaEditorLiquidacion(padre,liquidacion);
+	public static void preNuevaLiquidacion(VistaPrincipal padre,LiquidacionDTO liquidacion,FiltroModelView filtro) {
+		VistaEditorLiquidacion vel=new VistaEditorLiquidacion(padre,liquidacion,filtro);
 		vel.setVisible(true);
 		
 	}
 	
-	public static void posNuevaLiquidacion(VistaPrincipal padre,LiquidacionDTO liquidacion) {
+	public static void posNuevaLiquidacion(VistaPrincipal padre,LiquidacionDTO liquidacion,FiltroModelView filtro) {
 		ServicioLiquidaciones.crearLiquidacion(liquidacion);
-		preVisualizarLiquidaciones(padre);
+		//preVisualizarLiquidaciones(padre);
+		LiquidacionController controlador=new LiquidacionController();
+		controlador.ejecucionFiltro(filtro);
 	}
 	
 	public static void preLiquidar(LiquidacionDTO liquidacionSeleccionada,FiltroModelView filtro) {

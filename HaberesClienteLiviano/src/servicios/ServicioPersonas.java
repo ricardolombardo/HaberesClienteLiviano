@@ -60,6 +60,7 @@ public static void updatePersona(PersonaDTO persona) {
     personaJson.put("apellidoMaterno", persona.getApellidoMaterno());
     personaJson.put("departamentoId", persona.getDepartamento().getId());
     personaJson.put("jerarquiaId", persona.getJerarquia().getId());
+    personaJson.put("tituloId", persona.getTitulo().getId());
 
     try {
         String requestBody = mapper.writeValueAsString(personaJson);
@@ -85,20 +86,19 @@ public static void updatePersona(PersonaDTO persona) {
 	
 	public static void createPersona(PersonaDTO persona) {
 		
-		String url = "http://localhost:"+setearRutaServicio("personas");
+		String url = "http://localhost:"+setearRutaServicio("personas/crearPersonaConDTO");
 		 
 	     ObjectMapper mapper = new ObjectMapper();
 
 	     ObjectNode personaJson = mapper.createObjectNode();
+	     
 	     personaJson.put("nombre", persona.getNombre());
 	     personaJson.put("apellidoPaterno", persona.getApellidoPaterno());
 	     personaJson.put("apellidoMaterno", persona.getApellidoMaterno());
+	     personaJson.put("departamentoId", persona.getDepartamento().getId());
+	     personaJson.put("jerarquiaId", persona.getJerarquia().getId());
+	     personaJson.put("tituloId", persona.getTitulo().getId());
 
-	     // Crear nodo departamento (solo con ID)
-	     ObjectNode departamentoJson = mapper.createObjectNode();
-	     departamentoJson.put("id", 2);  // Debe ser un ID válido existente en tu BD
-
-	     personaJson.set("departamento", departamentoJson);
 	     try {
 	    	 String requestBody = mapper.writeValueAsString(personaJson);
 
