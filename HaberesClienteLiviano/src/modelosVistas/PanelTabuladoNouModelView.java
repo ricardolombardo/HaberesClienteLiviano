@@ -1,10 +1,12 @@
 package modelosVistas;
 
+import DTO.LiquidacionDTO;
 import DTO.PersonaDTO;
 import DTO.TabuladoDTO;
 
 public class PanelTabuladoNouModelView extends ModelView{
 	
+	private LiquidacionDTO liquidacion;
 	private TabuladoDTO tabulado;
 	private PersonaDTO persona;
 
@@ -23,7 +25,13 @@ public class PanelTabuladoNouModelView extends ModelView{
 	public void setPersona(PersonaDTO persona) {
 		this.persona = persona;
 	}
-	
-	
+
+	public LiquidacionDTO getLiquidacion() {
+		return liquidacion;
+	}
+
+	public void setLiquidacion(LiquidacionDTO liquidacion) {
+		this.liquidacion = liquidacion;
+	}
 
 }

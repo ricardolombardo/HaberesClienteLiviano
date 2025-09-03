@@ -2,6 +2,8 @@ package controladores;
 
 import java.util.Hashtable;
 import java.util.List;
+
+import DTO.LiquidacionDTO;
 import DTO.PersonaDTO;
 import DTO.TabuladoDTO;
 import modelosVistas.PanelTabuladoNouModelView;
@@ -33,7 +35,7 @@ public class TabuladosController {
 		modelo.getPadre().actualizarPanelCentral(panel);		
 	}
 	
-	public static void preVisualizarTabulado(TabuladoDTO tabulado,VistaPrincipal padre) {
+	public static void preVisualizarTabulado(TabuladoDTO tabulado,VistaPrincipal padre,LiquidacionDTO liquidacion) {
 		PanelTabuladoNouModelView modelo= new PanelTabuladoNouModelView();
 		modelo.setPadre(padre);
 
@@ -42,6 +44,7 @@ public class TabuladosController {
 		
 		modelo.setTabulado(tabuladoRecuperado);
 		modelo.setPersona(persona);
+		modelo.setLiquidacion(liquidacion);
 		
 		PanelTabuladoNou panel=new PanelTabuladoNou(modelo);
 		padre.actualizarPanelCentral(panel);

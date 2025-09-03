@@ -14,6 +14,7 @@ public class PersonaDTO extends DTO{
 	private JerarquiaDTO jerarquia;
 	private TituloDTO titulo;
 	private List<NOUDTO> nous;
+	private int antiguedad;
 
 	public String getNombre() {
 		return nombre;
@@ -69,6 +70,14 @@ public class PersonaDTO extends DTO{
 
 	public void setTitulo(TituloDTO titulo) {
 		this.titulo = titulo;
+	}
+
+	public int getAntiguedad() {
+		return antiguedad;
+	}
+
+	public void setAntiguedad(int antiguedad) {
+		this.antiguedad = antiguedad;
 	}
 	
 }

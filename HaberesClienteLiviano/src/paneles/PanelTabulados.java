@@ -39,7 +39,7 @@ public class PanelTabulados extends PanelVista{
 		this.add(panelInferior,BorderLayout.SOUTH);
 		
 		this.setearTitulos("NOU");
-		this.setearTitulos("DESCRIPCION");
+		this.setearTitulos("EMPLEADO");
 		this.setearTitulos("Editar");
 		this.setearTitulos("Ver");
 		panelCentro.add(titulos);
@@ -56,7 +56,8 @@ public class PanelTabulados extends PanelVista{
 			lNou.setFont(fuenteFila);
 			container.add(lNou);
 			
-			JLabel lDescripcion= new JLabel(tabulado.getDescripcion(),SwingConstants.CENTER);
+			String nombrePersona=modelo.getTabulados().get(cv).getNou().getPersona().getNombre()+" "+modelo.getTabulados().get(cv).getNou().getPersona().getApellidoPaterno();
+			JLabel lDescripcion= new JLabel(nombrePersona,SwingConstants.CENTER);
 			lDescripcion.setFont(fuenteFila);
 			container.add(lDescripcion);
 
@@ -79,8 +80,7 @@ public class PanelTabulados extends PanelVista{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					TabuladoDTO tabulado=(TabuladoDTO)boton.getDto();
-					TabuladosController.preVisualizarTabulado(tabulado, modelo.getPadre());
-					
+					TabuladosController.preVisualizarTabulado(tabulado, modelo.getPadre(),modelo.getLiqudacion());	
 				}
 				
 			});
@@ -90,34 +90,19 @@ public class PanelTabulados extends PanelVista{
 			container.addMouseListener(new MouseListener() {
 
 				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
+				public void mouseClicked(MouseEvent e) {}
 
 				@Override
-				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
+				public void mousePressed(MouseEvent e) {}
 
 				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
+				public void mouseReleased(MouseEvent e) {}
 
 				@Override
-				public void mouseEntered(MouseEvent e) {
-					container.setBackground(new Color(253, 235, 208));
-					
-				}
+				public void mouseEntered(MouseEvent e) {container.setBackground(new Color(253, 235, 208));}
 
 				@Override
-				public void mouseExited(MouseEvent e) {
-					container.setBackground(new Color(214, 234, 248));
-					
-				}
+				public void mouseExited(MouseEvent e) {container.setBackground(new Color(214, 234, 248));}
 				
 			});
 			panelCentro.add(container);
@@ -129,8 +114,6 @@ public class PanelTabulados extends PanelVista{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//VehiculoController.preVistaNuevoVehiculo(null,modeloVista.getPadre());
-				
 			}
 			
 		});

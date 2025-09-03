@@ -64,6 +64,7 @@ public class LiquidacionController extends UseCaseController{
 			hashTabulados.put(String.valueOf(tabulado.getId()), tabulado);
 		}
 		
+		modelo.setLiqudacion(liquidacion);
 		modelo.setTabulados(hashTabulados);
 		modelo.setPadre(padre);
 		TabuladosController.preTabuladosLiquidacion(modelo);

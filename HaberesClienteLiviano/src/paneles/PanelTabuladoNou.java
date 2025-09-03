@@ -8,12 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import DTO.LiquidacionDTO;
 import DTO.TabuladoConceptoDTO;
 import componentesGraficos.BotonSeleccion;
+import controladores.LiquidacionController;
 import modelosVistas.PanelTabuladoNouModelView;
+import vistas.VistaPrincipal;
 
 public class PanelTabuladoNou extends PanelVista{
 
@@ -30,7 +36,8 @@ public class PanelTabuladoNou extends PanelVista{
 		panelCentro=new JPanel();
 		panelCentro.setLayout(new BorderLayout());
 		panelCentro.setBackground(Color.white);
-		
+		this.llenarPanelSuperior(modelo);
+		/*
 		panelDatosPersona =new JPanel();
 		panelDatosPersona.setLayout(new GridLayout(3,1,5,5));
 		panelDatosPersona.setBackground(Color.white);
@@ -44,7 +51,7 @@ public class PanelTabuladoNou extends PanelVista{
 		JLabel lNombrePersona=new JLabel(modelo.getPersona().getNombre()+" "+modelo.getPersona().getApellidoPaterno());
 		lNombrePersona.setFont(fuenteDatos);
 		panelDatosPersona.add(lNombrePersona);
-		
+		*/
 		panelCentro.add(panelDatosPersona,BorderLayout.NORTH);
 		
 		panelConceptos =new JPanel();
@@ -110,42 +117,54 @@ public class PanelTabuladoNou extends PanelVista{
 						
 			container.setBackground(new Color(214, 234, 248));
 			container.addMouseListener(new MouseListener() {
-
 				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
+				public void mouseClicked(MouseEvent e) {}
 				@Override
-				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
+				public void mousePressed(MouseEvent e) {}
 				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
+				public void mouseReleased(MouseEvent e) {}
 				@Override
-				public void mouseEntered(MouseEvent e) {
-					container.setBackground(new Color(253, 235, 208));
-					
-				}
-
+				public void mouseEntered(MouseEvent e) {container.setBackground(new Color(253, 235, 208));}
 				@Override
-				public void mouseExited(MouseEvent e) {
-					container.setBackground(new Color(214, 234, 248));
-					
-				}
-				
+				public void mouseExited(MouseEvent e) {container.setBackground(new Color(214, 234, 248));}
 			});
 			panelConceptos.add(container);
 			validate();
 		}
+	}
+	
+	public void llenarPanelSuperior(PanelTabuladoNouModelView modelo) {
+		panelDatosPersona =new JPanel();
+		panelDatosPersona.setLayout(new GridLayout(3,1,5,5));
+		panelDatosPersona.setBackground(Color.white);
 		
+		Font fuenteDatos=new Font("Arial", java.awt.Font.PLAIN, 22);
+		
+		JPanel panelDatosLiqudacion=new JPanel();
+		panelDatosLiqudacion.setLayout(new GridLayout(1,2,5,5));
+		panelDatosLiqudacion.add(new JLabel(modelo.getLiquidacion().getDescripcion()));
+		
+		JButton btnRegresar=new JButton("Regresar");
+		btnRegresar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LiquidacionController.posVerTabuladosLiquidacion(modelo.getLiquidacion(), modelo.getPadre());
+			}
+		});
+		
+		panelDatosLiqudacion.add(btnRegresar);
+		panelDatosPersona.add(panelDatosLiqudacion);
+		
+		JLabel ldatosTabulado=new JLabel(modelo.getTabulado().getDescripcion());
+		ldatosTabulado.setFont(fuenteDatos);
+		panelDatosPersona.add(ldatosTabulado);
+		
+		JLabel lNombrePersona=new JLabel(modelo.getPersona().getNombre()+" "+modelo.getPersona().getApellidoPaterno());
+		lNombrePersona.setFont(fuenteDatos);
+		panelDatosPersona.add(lNombrePersona);
+		
+		panelCentro.add(panelDatosPersona,BorderLayout.NORTH);
 	}
 	
 }

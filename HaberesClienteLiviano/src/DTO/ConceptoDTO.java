@@ -11,6 +11,7 @@ public class ConceptoDTO extends DTO{
 	private String sentido;
 	private String nombre;
 	private String codigo;
+	private Boolean remunerativo;
 	
 	public BigDecimal getMonto() {
 		return monto;
@@ -36,8 +37,11 @@ public class ConceptoDTO extends DTO{
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+	public Boolean getRemunerativo() {
+		return remunerativo;
+	}
+	public void setRemunerativo(Boolean remunerativo) {
+		this.remunerativo = remunerativo;
+	}
 	
-	
-	
-
 }
